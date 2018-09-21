@@ -42,6 +42,9 @@ await envelope.firstTemplate().setUserData({
   _isForwarded: true
 });
 
+// Set document tags
+await envelope.firstDocument().setTags(["kyc", "oslo"])
+
 // Publishes the envelope
 await envelope.publish();
 ```
