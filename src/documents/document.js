@@ -15,4 +15,16 @@ export default class Document {
 
   }
 
+  async setTags(tags) {
+
+    let res = await remote.call({
+      path: `/envelopes/${this.envelope_id}/documents/${this.id}`,
+      method: "PUT",
+      body: {
+        tags: tags
+      }
+    });
+
+  }
+
 }
