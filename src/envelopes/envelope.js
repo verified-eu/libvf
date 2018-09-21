@@ -55,11 +55,19 @@ export default class Envelope {
     }
   }
 
+  firstDocument() {
+    if(this.documents.length > 0) {
+      return this.documents[0];
+    }
+
+    return null;
+  }
+
   firstTemplate() {
     if(this.documents.length > 0 && this.documents[0].template) {
       return this.documents[0].template;
     }
-    
+
     return null;
   }
 
