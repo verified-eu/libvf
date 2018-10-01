@@ -1,19 +1,13 @@
 import query from 'query-string';
-let instance;
 
 export default class Authenticator {
 
-  static getInstance() {
-    if(!instance) instance = new Authenticator();
-    return instance;
+  static authenticate(opts) {
+    Authenticator.token = opts.token;
+    Authenticator.namespace = opts.namespace;
   }
 
-  authenticate(opts) {
-    this.token = opts.token;
-    this.namespace = opts.namespace;
-  }
-
-  parseUrl() {
+  static parseUrl() {
 
     if(!location) throw new Error("Location not defined. Could not find URL.");
 

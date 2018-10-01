@@ -8,26 +8,23 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'libvf.js',
     library: 'libvf',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    libraryTarget: 'var',
+    //umdNamedDefine: true
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2015'],
-              plugins: [
-                "transform-class-properties",
-                "syntax-class-properties"
-              ]
-            }
+        test: /\.m?js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              "@babel/plugin-transform-arrow-functions",
+              "@babel/plugin-transform-async-to-generator"
+            ]
           }
-        ],
-        exclude: /node_modules/
+        }
       }
     ]
   },
@@ -42,5 +39,5 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: "source-map"
 }

@@ -49,7 +49,36 @@ export default class Envelope {
 
   }
 
+  async getSignToken() {
+
+    return new Promise((resolve, reject) => {
+
+      if(!this.data.flow) reject("Envelope must be reflected before signtoken can be retrieved. Could not find envelope flow.");
+
+      let self = this;
+      const attempts = 10;
+
+      let polling = setInterval(() => {
+
+        remote.call({
+          path: `${self.data.flow.id}/jobs/${self.id}`,
+          method: "GET"
+        })
+        .then((res) => {
+          if(res.data.signToken && res.data.signToken != "NA") {
+            clearInterval(polling);
+            resolve(res.data.signToken);
+          }
+        });
+
+      }, 1000);
+
+    });
+
+  }
+
   deserialize() {
+    this.documents = [];
     for(let document of this.data.documents) {
       this.documents.push(new Document(document.id, this.id, document));
     }

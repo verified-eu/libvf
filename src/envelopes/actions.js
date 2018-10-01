@@ -4,9 +4,9 @@ import remote from '../helpers/remote';
 
 export default class EnvelopeActions {
 
-  async create(descriptor, body) {
+  static async create(descriptor, body) {
 
-    if(!Authenticator.getInstance().token) throw new Error('libvf must be authenticated with an access token before you can create an envelope');
+    if(!Authenticator.token) throw new Error('libvf must be authenticated with an access token before you can create an envelope');
 
     // Generate a document with hash "1" if nothing else is specified as that's almost always the case
     if(!body) { body = { "documents": { "1": { "data": {} } } } }
