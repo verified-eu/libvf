@@ -23,4 +23,15 @@ export default class Template {
 
   }
 
+  async getUserData() {
+
+    let res = await remote.call({
+      path: `/envelopes/${this.envelope_id}/documents/${this.document_id}/templates/${this.id}/user-data`,
+      method: "GET"
+    });
+
+    return res.data;
+
+  }
+
 }
