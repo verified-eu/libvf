@@ -25,7 +25,17 @@ export default class Authenticator {
   }
 
   static parseToken(token) {
-    return jwt(token);
+    let tokenData = jwt(token);
+    if(tokenData.roles) {
+      for(let role of tokenData.roles) {
+        if(role.includes("descriptors")) {
+          this.role = /[^/]*$/.exec(role)[0];
+        }
+      }
+    } else {
+      this.role = "owner";
+    }
+    return tokenData;
   }
 
 }
