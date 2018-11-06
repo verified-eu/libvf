@@ -100,4 +100,14 @@ export default class Envelope {
     return null;
   }
 
+  async createDocument(data) {
+    let res = await remote.call({
+      path: `/envelopes/${this.id}/documents`,
+      method: "POST",
+      body: data
+    });
+
+    return res;
+  }
+
 }

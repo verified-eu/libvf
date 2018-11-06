@@ -27,4 +27,29 @@ export default class Document {
 
   }
 
+  async uploadPDF(file, binary) {
+    let docFileRes = await remote.call({
+      path: `/envelopes/${this.envelope_id}/documents/${this.id}/files`,
+      method: "POST",
+      body: {
+        fileType: "document",
+        name: file.name
+      }
+    });
+
+    let url = docFileRes.data.url;
+
+    let res = await remote.raw({
+      url: url,
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/pdf"
+      },
+      data: binary
+    });
+
+    return res;
+
+  }
+
 }

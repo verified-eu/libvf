@@ -12,7 +12,7 @@ export default class Remote {
     headers["authorization"] = "JWT " + Authenticator.token;
 
     if(Authenticator.namespace) {
-      headers["x-namespace"] = "/companies/" + Authenticator.namespace;
+      headers["x-namespace"] = Authenticator.namespace;
     }
 
     headers["content-type"] = "application/json";
@@ -34,6 +34,37 @@ export default class Remote {
       throw new Error(err);
     }
 
+  }
+
+  static async auth(opts) {
+
+    try {
+      let res = await axios({
+        url: "/api/auth",
+        method: "POST",
+        auth: {
+          username: opts.email,
+          password: opts.password
+        }
+      });
+
+      return res;
+    }
+    catch(err) {
+      throw new Error(err);
+    }
+
+  }
+
+  static async raw(opts) {
+    try {
+      let res = await axios(opts);
+
+      return res;
+    }
+    catch(err) {
+      throw new Error(err);
+    }
   }
 
 }

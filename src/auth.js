@@ -1,5 +1,7 @@
 import query from 'query-string';
 import jwt from 'jwt-decode';
+import remote from './helpers/remote';
+import CompanyActions from './companies/actions';
 
 export default class Authenticator {
 
@@ -7,6 +9,59 @@ export default class Authenticator {
     this.token = opts.token;
     this.namespace = opts.namespace;
     this.tokenData = Authenticator.parseToken(opts.token);
+  }
+
+  static async login(opts) {
+
+    let res = await remote.auth({
+      email: opts.email,
+      password: opts.password
+    });
+
+    if(res.data && res.data.token) {
+      this.token = res.data.token;
+      this.tokenData = Authenticator.parseToken(this.token);
+      return res.data.token;
+    }
+
+    return res.data;
+
+  }
+
+  static async getUserinfo() {
+
+    let res = await remote.call({
+      path: `/auth/userinfo`,
+      method: "GET"
+    });
+
+    return res.data;
+
+  }
+
+  static async getCompanies() {
+
+    let companies = [];
+
+    let res = await remote.call({
+      path: `/auth?action=OPTIONS&resource=%2Fcompanies`,
+      method: "GET"
+    });
+
+    for(let resource of res.data.resources) {
+
+      let company = await CompanyActions.get(resource.split("/companies/")[1]);
+
+      companies.push(company);
+
+    }
+
+    return companies;
+
+  }
+
+  static setNamespace(companyID) {
+    this.namespace = companyID;
   }
 
   static parseUrl() {
@@ -20,7 +75,7 @@ export default class Authenticator {
     this.token = urlParams.access_token;
     this.tokenData = this.parseToken(urlParams.access_token);
 
-    if(urlParams.c) this.namespace = urlParams.c;
+    if(urlParams.c) this.namespace = "/companies/" + urlParams.c;
 
   }
 
@@ -35,6 +90,7 @@ export default class Authenticator {
     } else {
       this.role = "owner";
     }
+
     return tokenData;
   }
 

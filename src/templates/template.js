@@ -8,6 +8,7 @@ export default class Template {
     this.envelope_id = envelope_id;
     this.document_id = document_id;
     this.data = data;
+    this.userData = data.userData;
 
   }
 
