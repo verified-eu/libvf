@@ -64,6 +64,11 @@ export default class Authenticator {
     this.namespace = companyID;
   }
 
+  static setToken(token) {
+    this.token = token;
+    this.tokenData = Authenticator.parseToken(token);
+  }
+
   static parseUrl() {
 
     if(!location) throw new Error("Location not defined. Could not find URL.");

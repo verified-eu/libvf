@@ -58,7 +58,7 @@ export default class Envelope {
       let self = this;
       const attempts = 10;
 
-      let polling = setInterval(() => {
+      let pollForSignToken = setInterval(() => {
 
         remote.call({
           path: `${self.data.flow.id}/jobs/${self.id}`,
@@ -66,9 +66,13 @@ export default class Envelope {
         })
         .then((res) => {
           if(res.data.signToken && res.data.signToken != "NA") {
-            clearInterval(polling);
+            clearInterval(pollForSignToken);
             resolve(res.data.signToken);
           }
+        })
+        .catch((err) => {
+          clearInterval(pollForSignToken);
+          console.log(err);
         });
 
       }, 1000);
@@ -108,6 +112,21 @@ export default class Envelope {
     });
 
     return res;
+  }
+
+  async getBearerToken() {
+
+    if(!this.data.flow) reject("Envelope must be reflected before bearer token can be retrieved. Could not find envelope flow.");
+
+    let res = await remote.call({
+      path: `${this.data.flow.id}/jobs/${this.id}`,
+      method: "GET"
+    });
+
+    if(res.data.token && res.data.token !== "")
+      return res.data.token;
+    else throw new Error("getBearerToken: token was not part of flow response. Notice: The first call for the token will remove it, have you already fetched it?");
+
   }
 
 }
