@@ -14,4 +14,15 @@ export default class CompanyActions {
 
   }
 
+  static async getAll(limit) {
+
+    let res = await remote.call({
+      path: `/companies?limit=${limit}`,
+      method: "GET"
+    });
+
+    return res.data;
+
+  }
+
 }
