@@ -1,4 +1,4 @@
-import '@babel/polyfill';
+import 'idempotent-babel-polyfill';
 import Authenticator from './auth';
 import EnvelopeActions from './envelopes/actions'
 import CompanyActions from './companies/actions'

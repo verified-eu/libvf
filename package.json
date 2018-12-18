@@ -20,11 +20,11 @@
   },
   "homepage": "verified.eu",
   "dependencies": {
-    "@babel/polyfill": "^7.0.0",
     "@babel/runtime": "^7.1.2",
     "axios": "^0.18.0",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
+    "idempotent-babel-polyfill": "^7.0.0",
     "jwt-decode": "^2.2.0",
     "query-string": "^6.1.0"
   },
