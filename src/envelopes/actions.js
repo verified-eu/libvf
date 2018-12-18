@@ -59,4 +59,15 @@ export default class EnvelopeActions {
 
   }
 
+  static async getDescriptor(descriptorId) {
+
+    let res = await remote.call({
+      path: `/envelope-descriptors/${descriptorId}`,
+      method: "GET"
+    });
+
+    return res.data;
+
+  }
+
 }

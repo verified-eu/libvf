@@ -49,11 +49,9 @@ export default class Envelope {
 
   }
 
-  async getSignToken() {
+  async getSignToken(flowId) {
 
     return new Promise((resolve, reject) => {
-
-      if(!this.data.flow) reject("Envelope must be reflected before signtoken can be retrieved. Could not find envelope flow.");
 
       let self = this;
       const attempts = 10;
@@ -61,7 +59,7 @@ export default class Envelope {
       let pollForSignToken = setInterval(() => {
 
         remote.call({
-          path: `${self.data.flow.id}/jobs/${self.id}`,
+          path: `${flowId}/jobs/${self.id}`,
           method: "GET"
         })
         .then((res) => {
@@ -114,12 +112,10 @@ export default class Envelope {
     return res;
   }
 
-  async getBearerToken() {
-
-    if(!this.data.flow) reject("Envelope must be reflected before bearer token can be retrieved. Could not find envelope flow.");
+  async getBearerToken(flowId) {
 
     let res = await remote.call({
-      path: `${this.data.flow.id}/jobs/${this.id}`,
+      path: `${flowId}/jobs/${this.id}`,
       method: "GET"
     });
 
