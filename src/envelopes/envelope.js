@@ -25,6 +25,18 @@ export default class Envelope {
 
   }
 
+  async put(data) {
+
+    let res = await remote.call({
+      path: `/envelopes/${this.id}`,
+      method: "PUT",
+      body: data
+    });
+
+    return res;
+
+  }
+
   async addRecipient(recipient) {
 
     let res = await remote.call({
