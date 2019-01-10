@@ -15,6 +15,18 @@ export default class Document {
 
   }
 
+  async put(data) {
+
+    let res = await remote.call({
+      path: `/envelopes/${this.envelope_id}/documents/${this.id}`,
+      method: "PUT",
+      body: data
+    });
+
+    return res;
+
+  }
+
   async setTags(tags) {
 
     let res = await remote.call({
