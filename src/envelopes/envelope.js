@@ -126,14 +126,31 @@ export default class Envelope {
 
   async getBearerToken(flowId) {
 
-    let res = await remote.call({
-      path: `${flowId}/jobs/${this.id}`,
-      method: "GET"
-    });
+    return new Promise((resolve, reject) => {
 
-    if(res.data.token && res.data.token !== "")
-      return res.data.token;
-    else throw new Error("getBearerToken: token was not part of flow response. Notice: The first call for the token will remove it, have you already fetched it?");
+      let self = this;
+      const attempts = 10;
+
+      let pollForBearerToken = setInterval(() => {
+
+        remote.call({
+          path: `${flowId}/jobs/${self.id}`,
+          method: "GET"
+        })
+        .then((res) => {
+          if(res.data.token && res.data.token != "NA") {
+            clearInterval(pollForBearerToken);
+            resolve(res.data.token);
+          }
+        })
+        .catch((err) => {
+          clearInterval(pollForBearerToken);
+          console.log(err);
+        });
+
+      }, 1000);
+
+    });
 
   }
 
