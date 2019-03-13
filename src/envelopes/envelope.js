@@ -91,6 +91,22 @@ export default class Envelope {
 
   }
 
+  async getSignLink(id) {
+
+    let res = await remote.call({
+      path: `/envelopes/${this.id}/jobs/get.sign.link`,
+      method: "POST",
+      body: {
+        recipient: {
+          id
+        }
+      }
+    });
+
+    return res.data.getSignLink.recipient[id].url;
+
+  }
+
   deserialize() {
     this.documents = [];
     for(let document of this.data.documents) {
