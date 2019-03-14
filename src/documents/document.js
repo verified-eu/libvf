@@ -39,13 +39,13 @@ export default class Document {
 
   }
 
-  async uploadPDF(file, binary) {
+  async uploadPDF(fileName, binary) {
     let docFileRes = await remote.call({
       path: `/envelopes/${this.envelope_id}/documents/${this.id}/files`,
       method: "POST",
       body: {
         fileType: "document",
-        name: file.name
+        name: fileName
       }
     });
 
@@ -64,13 +64,13 @@ export default class Document {
 
   }
 
-  async uploadAttachment(file, binary) {
+  async uploadAttachment(fileName, binary) {
     let docFileRes = await remote.call({
       path: `/envelopes/${this.envelope_id}/documents/${this.id}/files`,
       method: "POST",
       body: {
         fileType: "attachment",
-        name: file.name
+        name: fileName
       }
     });
 

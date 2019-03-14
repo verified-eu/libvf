@@ -84,6 +84,7 @@ export default class Authenticator {
     this.tokenData = this.parseToken(token);
 
     if(urlParams.c) this.namespace = "/companies/" + urlParams.c;
+    else if(urlParams.namespace) this.namespace = "/companies/" + urlParams.namespace
 
   }
 
