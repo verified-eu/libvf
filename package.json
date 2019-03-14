@@ -1,6 +1,6 @@
 {
   "name": "libvf",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Library for the Verified API",
   "main": "dist/libvf.js",
   "scripts": {

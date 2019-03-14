@@ -39,6 +39,8 @@ export default class OIDCNorway {
 
     let parsed = qs.parse(url);
 
+    console.log(parsed);
+
     let res = await remote.call({
         path: `/bankid-oidc/aml`,
         method: "GET",

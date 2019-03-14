@@ -69,16 +69,19 @@ export default class Authenticator {
     this.tokenData = Authenticator.parseToken(token);
   }
 
-  static parseUrl() {
+  static useTokenFromUrl() {
 
     if(!location) throw new Error("Location not defined. Could not find URL.");
 
     const urlParams = query.parse(location.search);
 
-    if(!urlParams.access_token) throw new Error("Could not find the parameter access_token in URL");
+    let token = urlParams.verified_token || urlParams.access_token;
 
-    this.token = urlParams.access_token;
-    this.tokenData = this.parseToken(urlParams.access_token);
+    if(!token) throw new Error("Could not find the parameter verified_token or access_token in URL");
+
+    this.token = token;
+
+    this.tokenData = this.parseToken(token);
 
     if(urlParams.c) this.namespace = "/companies/" + urlParams.c;
 

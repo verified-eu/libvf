@@ -7,7 +7,7 @@ export default class Remote {
 
     if(!Authenticator.token) throw new Error("libvf must be authenticated with an access token before you can make calls to the api");
 
-    let headers = {};
+    let headers = opts.headers || {};
 
     headers["authorization"] = "JWT " + Authenticator.token;
 
