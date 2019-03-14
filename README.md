@@ -67,7 +67,7 @@ This makes a request to the API, reads all of the envelope data, parses it and c
 ### Uploading files
 Uploading the main pdf to a document
 ```javascript
-await envelope.firstDocument().uploadPDF('Story of the padded one.pdf', fileBinaryData)
+await envelope.firstDocument().uploadPDF('Story of the padded one.pdf', fileBinary)
 ```
 
 Uploading an attachment to a document
