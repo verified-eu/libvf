@@ -1,5 +1,14 @@
 import remote from '../helpers/remote';
 
+/**
+ * A Template instance created by {@link Envelope#reflect}
+ * @class Template
+ * @property {string} id Template id
+ * @property {string} envelope_id Envelope id
+ * @property {string} document_id Document id
+ * @property {object} data Raw template data from the latest reflection
+ * @property {object} userData userData from the template data
+ */
 export default class Template {
 
   constructor(id, envelope_id, document_id, data) {

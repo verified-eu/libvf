@@ -60,3 +60,5 @@ typings/
 dist/
 examples/
 docs/
+out/
+docs/

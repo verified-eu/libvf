@@ -19,7 +19,8 @@ import * as libvf from 'libvf'
 import { auth, envelopes, companies, oidc } from 'libvf'
 ```
 
-From CDN\
+From CDN
+<br>
 <small>creates a global object `libvf`</small>
 ```html
 <script src="https://unpkg.com/libvf"></script>
@@ -27,7 +28,7 @@ From CDN\
 
 
 ### Authentication
-Using your Verified credentials\
+Using your Verified credentials<br>
 <small>Namespace is optional, but you will not be able to act on behalf of a company without it.</small>
 ```javascript
 const jwt = await libvf.auth.login({
@@ -44,7 +45,7 @@ libvf.auth.setNamespace('/companies/your_company_id')
 ```
 
 
-Getting the JWT and namespace from the URL parameters\
+Getting the JWT and namespace from the URL parameters<br>
 <small>Looks for the url parameters `verified_token` or `access_token` for the jwt, and `c` or `namespace` for the namespace. If not found, an error will be thrown.</small>
 ```javascript
 libvf.auth.useTokenFromUrl()

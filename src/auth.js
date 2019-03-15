@@ -5,12 +5,32 @@ import CompanyActions from './companies/actions';
 
 export default class Authenticator {
 
+   /**
+   * Manually specify jwt and namespace
+   * 
+   * @memberof auth
+   * 
+   * @param {object} opts Options
+   * @param {string} opts.token The JWT
+   * @param {string} opts.namespace The namespace, e.g "/companies/company_id"
+   * 
+   */
   static authenticate(opts) {
     this.token = opts.token;
     this.namespace = opts.namespace;
     this.tokenData = Authenticator.parseToken(opts.token);
   }
 
+  /**
+   * Authenticate with Verified email and password
+   * 
+   * @memberof auth
+   * 
+   * @param {object} opts Options
+   * @param {string} opts.email Your Verified email
+   * @param {string} opts.password Your Verified password
+   * 
+   */
   static async login(opts) {
 
     let res = await remote.auth({
@@ -28,6 +48,14 @@ export default class Authenticator {
 
   }
 
+  /**
+   * Gets info about the authenticated user. Calling this method before authenticating will throw an error.
+   * 
+   * @memberof auth
+   * 
+   * @return {json} The raw API response for userinfo
+   * 
+   */
   static async getUserinfo() {
 
     let res = await remote.call({
@@ -39,6 +67,14 @@ export default class Authenticator {
 
   }
 
+    /**
+   * Gets the authenticated users companies. Calling this method before authenticating will throw an error.
+   * 
+   * @memberof auth
+   * 
+   * @return {array} An array of companies
+   * 
+   */
   static async getCompanies() {
 
     let companies = [];
@@ -60,15 +96,38 @@ export default class Authenticator {
 
   }
 
+  /**
+   * Sets the namespace of the auth instance
+   * 
+   * @memberof auth
+   * 
+   * @param {string} companyID The namespace to set. E.g "/companies/company_id"
+   * 
+   */
   static setNamespace(companyID) {
     this.namespace = companyID;
   }
 
+  /**
+   * Sets the JWT of the auth instance
+   * 
+   * @memberof auth
+   * 
+   * @param {string} token The JWT
+   * 
+   */
   static setToken(token) {
     this.token = token;
     this.tokenData = Authenticator.parseToken(token);
   }
 
+  /**
+   * Sets the JWT from one of the two URL parameters "verified_token" or "access_token" (required)
+   * Sets the namespace from one of the two URL parameters "c" or "namespace" (optional)
+   * 
+   * @memberof auth
+   * 
+   */
   static useTokenFromUrl() {
 
     if(!location) throw new Error("Location not defined. Could not find URL.");

@@ -5,6 +5,16 @@ import query from 'query-string';
 
 export default class EnvelopeActions {
 
+  /**
+   * Creates a new envelope
+   * 
+   * @memberof envelopes
+   * 
+   * @param {string} descriptor Envelope descriptor
+   * @param {object} [body={}] API request payload
+   * 
+   * @return {Envelope} 
+   */
   static async create(descriptor, body) {
 
     // Generate a document with hash "1" if nothing else is specified as that's almost always the case
@@ -20,6 +30,15 @@ export default class EnvelopeActions {
 
   }
 
+  /**
+   * Gets an envelope by its id
+   * 
+   * @memberof envelopes
+   * 
+   * @param {string} id Envelope id
+   * 
+   * @return {Envelope} 
+   */
   static async get(id) {
 
     let envelope = await remote.call({
@@ -35,6 +54,13 @@ export default class EnvelopeActions {
 
   }
 
+  /**
+   * Gets an envelope from the document_uid URL parameter
+   * 
+   * @memberof envelopes
+   * 
+   * @return {Envelope} 
+   */
   static async getFromUrl() {
 
     const urlParams = query.parse(location.search);
@@ -48,6 +74,13 @@ export default class EnvelopeActions {
   }
 
 
+  /**
+   * Creates a new envelope
+   * 
+   * @memberof envelopes
+   * 
+   * @return {json} List of envelopes
+   */
   static async query() {
 
     let res = await remote.call({
@@ -59,6 +92,16 @@ export default class EnvelopeActions {
 
   }
 
+
+  /**
+   * Gets an envelope by its id
+   * 
+   * @memberof envelopes
+   * 
+   * @param {string} descriptorId Descriptor id
+   * 
+   * @return {json} Descriptor data 
+   */
   static async getDescriptor(descriptorId) {
 
     let res = await remote.call({
