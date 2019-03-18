@@ -3,6 +3,7 @@
 Javascript wrapper for the Verified API, for use in the browser.
 
 ## Links
+* [libvf documentation](https://verified-eu.github.io/libvf/)
 * [The official Verified API documentation](https://docs.verified.eu)
 * [Find this package on NPM](https://npmjs.com/package/libvf)
 * [CDN for this package](https://unpkg.com/libvf)
