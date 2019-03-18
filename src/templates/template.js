@@ -21,6 +21,12 @@ export default class Template {
 
   }
 
+  /**
+   * Sets the template userdata
+   * @memberof Template
+   * @instance
+   * @param {object} data Json data that will be added to the userdata payload
+   */
   async setUserData(data) {
 
     let res = await remote.call({
@@ -33,6 +39,12 @@ export default class Template {
 
   }
 
+  /**
+   * Gets the template userdata
+   * @memberof Template
+   * @instance
+   * @returns {json} Template userdata
+   */
   async getUserData() {
 
     let res = await remote.call({
