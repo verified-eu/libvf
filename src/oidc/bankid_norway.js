@@ -1,5 +1,6 @@
 import remote from '../helpers/remote';
 import qs from 'query-string';
+import jwt from 'jwt-decode';
 
 export default class OIDCNorway {
 
@@ -67,8 +68,6 @@ export default class OIDCNorway {
 
     let parsed = qs.parse(url);
 
-    console.log(parsed);
-
     let res = await remote.call({
         path: `/bankid-oidc/aml`,
         method: "GET",
@@ -79,6 +78,28 @@ export default class OIDCNorway {
     });
 
     return res.data;
+
+  }
+
+  /**
+   * Decodes and returns the id_token and access_token parameter from the Url
+   * 
+   * @returns {json} id_token and access_token object
+   */
+  static decodeUrlTokens() {
+
+    if(!this.urlHasNecessaryTokens())
+      throw Error("id_token and access_token not present in Url");
+    
+    let index = window.location.href.indexOf('#');
+    let url = window.location.href.substr(0, index) + '?' + window.location.href.substr(index + 1);
+
+    let parsed = qs.parse(url);
+
+    return {
+      id_token: jwt(parsed.id_token),
+      access_token: jwt(parsed.access_token)
+    }
 
   }
 
