@@ -119,22 +119,41 @@ export default class Document {
 
   }
 
-    /**
-   * Download a file from the document
+  /**
+   * Returns information about the specified file
    * @instance
    * @memberof Document
-   * @param {string} fileId The id of the file to download
+   * @param {string} fileId The id of the file to get info about
    * 
-   * @returns {binary} The specified file
+   * @returns {string} Download url
    */
-  async downloadFile(fileId) {
+  async getFile(fileId) {
 
     let res = await remote.call({
-      path: `${this.data.uid}/files/${fileId}/url`,
+      path: `${this.data.uid}/files/${fileId}`,
       method: "GET"
     });
 
     return res.data;
+
+  }
+
+  /**
+   * Returns a download url for the specified file
+   * @instance
+   * @memberof Document
+   * @param {string} fileId The id of the file to get the download url for
+   * 
+   * @returns {string} Download url
+   */
+  async getFileDownloadUrl(fileId) {
+
+    let res = await remote.call({
+      path: `${this.data.uid}/files/${fileId}/url?asObject=1`,
+      method: "GET"
+    });
+
+    return res.data.url;
 
   }
 
