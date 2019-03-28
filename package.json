@@ -7,6 +7,7 @@
     "dev": "webpack-dev-server --open --hot --port 8060",
     "watch": "webpack --watch --config webpack.config.js -p",
     "dist": "webpack",
+    "docs": "jsdoc -c jsdoc.conf.json -R README.md",
     "prepublish": "npm run dist"
   },
   "repository": {
@@ -18,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/verified-eu/libvf/issues"
   },
-  "homepage": "verified.eu",
+  "homepage": "https://verified.eu",
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "axios": "^0.18.0",
