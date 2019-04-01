@@ -83,7 +83,7 @@ export default class OIDCNorway {
 
   /**
    * Decodes and returns the id_token and access_token parameter from the Url
-   * 
+   * @memberof oidc.norway
    * @returns {json} id_token and access_token object
    */
   static decodeUrlTokens() {
