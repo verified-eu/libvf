@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Namespace: companies</title>
+    <title>Namespace: idrights</title>
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -353,7 +353,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="companies.html">Namespace: companies</h1>
+        <h1 class="page-title" data-filename="idrights.html">Namespace: idrights</h1>
         
 
 
@@ -362,7 +362,7 @@
     
 <header>
     <div class="header content-size">
-        <h2>companies
+        <h2>idrights
         </h2>
         
     </div>
@@ -422,12 +422,12 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".get">
-            <a class="share-icon" href="#.get"><span class="glyphicon glyphicon-link"></span></a>
+        <h4 class="name" id=".getCompanyRoles">
+            <a class="share-icon" href="#.getCompanyRoles"><span class="glyphicon glyphicon-link"></span></a>
             <span class="">
-                companies.get
+                idrights.getCompanyRoles
             </span>
-            <span class="signature">(id)</span><span class="type-signature">json</span>
+            <span class="signature">(orgNr)</span><span class="type-signature">json</span>
             
             <span class="access-signature">async</span><span class="access-signature">static</span>
             
@@ -443,7 +443,7 @@
     
     
     <div class="description">
-        Gets company info
+        Get company roles
     </div>
     
 
@@ -474,7 +474,7 @@
 	
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>orgNr</code></td>
             
             
             <td class="type">
@@ -490,7 +490,7 @@
             
             <td class="description last">
                 
-                The company id</td>
+                The organization number to look up</td>
         </tr>
 	
 	
@@ -553,153 +553,7 @@
                         
                     
             </td>
-            <td class="description last">The raw API response for the company</td>
-        </tr>
-    
-    </tbody>
-</table>
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".getAll">
-            <a class="share-icon" href="#.getAll"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">
-                companies.getAll
-            </span>
-            <span class="signature">(limit)</span><span class="type-signature">json</span>
-            
-            <span class="access-signature">async</span><span class="access-signature">static</span>
-            
-            
-        </h4>
-    
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Gets a list of companies
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>limit</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                The amount of companies to return</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
-            
-            <td class="type">
-            
-                        json
-                        
-                    
-            </td>
-            <td class="description last">An array of companies</td>
+            <td class="description last">companyRoles</td>
         </tr>
     
     </tbody>

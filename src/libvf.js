@@ -3,6 +3,7 @@ import Authenticator from './auth';
 import EnvelopeActions from './envelopes/actions'
 import CompanyActions from './companies/actions'
 import OIDC from './oidc/index'
+import IDRights from './idrights/index'
 
 /** @namespace auth */
 export let auth = Authenticator;
@@ -15,3 +16,6 @@ export let companies = CompanyActions;
 
 /** @namespace oidc */
 export let oidc = OIDC;
+
+/** @namespace idrights */
+export let idrights = IDRights;

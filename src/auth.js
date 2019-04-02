@@ -67,7 +67,7 @@ export default class Authenticator {
 
   }
 
-    /**
+  /**
    * Gets the authenticated users companies. Calling this method before authenticating will throw an error.
    * 
    * @memberof auth
