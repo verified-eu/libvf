@@ -4,6 +4,7 @@ import EnvelopeActions from './envelopes/actions'
 import CompanyActions from './companies/actions'
 import OIDC from './oidc/index'
 import IDRights from './idrights/index'
+import Bisnode from './bisnode/index';
 
 /** @namespace auth */
 export let auth = Authenticator;
@@ -19,3 +20,6 @@ export let oidc = OIDC;
 
 /** @namespace idrights */
 export let idrights = IDRights;
+
+/** @namespace bisnode */
+export let bisnode = Bisnode;
