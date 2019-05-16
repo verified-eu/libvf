@@ -82,6 +82,36 @@ export default class OIDCNorway {
   }
 
   /**
+   * Get company info
+   * 
+   * @memberof oidc.norway
+   * 
+   * @param {string} orgNr Organization number
+   * @param {Array.<string>} [expnds=[]] Expands https://aml.bankidapis.no/#operation/Organization_RetrieveOrganizationInformation
+   * @param {string} [nationality=NO] Nationality
+   * 
+   * @returns {json} Information about the company from BankID
+   * 
+   */
+  static async getCompanyInfo(orgNr, expands, nationality) {
+
+    if(!expands)
+      expands = [];
+
+    if(!nationality)
+      nationality = "NO";
+
+    let res = await remote.call({
+        path: `/bankid-oidc/organization/noauth?organizationNumber=${orgNr.toString().replace(/\D/g,'')}&nationality=${nationality}&expands=${expands.toString()}`,
+        method: "GET"
+    });
+
+    return res.data;
+
+  }
+
+
+  /**
    * Decodes and returns the id_token and access_token parameter from the Url
    * @memberof oidc.norway
    * @returns {json} id_token and access_token object
